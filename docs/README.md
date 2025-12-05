@@ -1,5 +1,3 @@
-# Descripts:s
-
 # 📝LIST OF PROBLEMS
 **Total solved problems: 12**
 ## 🟢Easy

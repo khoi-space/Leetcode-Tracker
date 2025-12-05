@@ -25,6 +25,7 @@ all: $(TARGET)
 # Build the main executable
 $(TARGET): $(SOURCES)
 	$(CXX) $(CXXFLAGS) $(SOURCES) -o $(TARGET).exe
+	./main.exe
 
 # Run the program
 run: 

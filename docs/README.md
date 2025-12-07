@@ -17,8 +17,6 @@
     * [C++](../src/cpp/3432.cpp)
 * Count Odd Numbers in an Interval Range [[1523](https://leetcode.com/problems/count-odd-numbers-in-an-interval-range/)]
     * [C++](../src/cpp/1523.cpp)
-    * [Python](../src/py/1523.py)
-    * [Java](../src/java/1523.java)
 
 ## 🟡Medium
 * Add Two Numbers [[2](https://leetcode.com/problems/add-two-numbers/)]

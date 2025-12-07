@@ -3,7 +3,7 @@
 Leetcode/  
 ├── docs/            # Documentation and scripts  
 │   ├── README.md         # This documentation file  
-│   ├── PROBLEM_LIST.md           # Markdown file use to list all solved problems 
+│   ├── PROBLEM_LIST.md   # Markdown file use to list all solved problems 
 │   └── update_readme.py  # Script to update README.md automatically  
 ├── inc/             # C++ header files  
 │   ├── listnode.h        # Definition for ListNode (linked list)  
@@ -18,7 +18,7 @@ Leetcode/
 ├── utils/           # Utility code  
 │   └── print.h           # Helper functions for printing (C++)
 ```
-# 📝 Note 
+# 📝 NOTE 
 File [update_list.md](update_list.py) will help to automatically update file [PROBLEM_LIST.md](PROBLEM_LIST.md):
 * Add a new problem that you have just solved. The terminal will request you as follows:
 ```
@@ -40,4 +40,12 @@ Language (cpp/python/java): python
 Added python link for problem 7
 ```
 
-
+# 🚀 FUTURE PLANS:
+1. Handle with other languages (such as python, java,...)
+2. Create an app to:
+    * **AI assistant**: provide suggestions, analyze errors, generate test cases, explain code.
+    * **Statistics & Analytics**: progress charts, problem counts by difficulty, tags, solving time, accuracy rate, etc.
+    * **Search & Filtering**: by tags, difficulty, status, language, solving date, etc.
+    * **Personal notes & reminders**
+    * **Practice mode**: random problems, set timers
+    * **Roadmap**: suggest a roadmap with similar problems

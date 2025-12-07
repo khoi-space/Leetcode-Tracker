@@ -71,7 +71,7 @@ def add_problem_entry(md_filepath: Path) -> bool:
             print("Alert: Language must be cpp, python, java, or all")
             return False
 
-        entry_lines = [f"* {name} [[{number_str}]({leetcode_url})]"]
+        entry_lines = [f"* {name} [[{leetcode_url}]({leetcode_url})]"]
         if lang_input == "cpp" or lang_input == "all":
             entry_lines.append(f"    * [C++](../src/cpp/{number_str}.cpp)")
         if lang_input == "python" or lang_input == "all":
@@ -153,7 +153,7 @@ def main():
     choice = input("Add new problem entry? (y/n): ").strip().lower()
     if choice == "y":
         add_problem_entry(markdown_file_path)
-        update_problem_count(markdown_file_path)
+        # update_problem_count(markdown_file_path)
     else:
         lang_choice = input("Add new language for a problem? (y/n): ").strip().lower()
         if lang_choice == "y":

@@ -212,7 +212,8 @@ def main():
                 print(f"Added {lang_input} link for problem {number_str}")
             except Exception as e:
                 print(f"Error: {e}")
-    # update_problem_count(markdown_file_path)
+        else:
+            update_problem_count(markdown_file_path)
 
 
 if __name__ == "__main__":

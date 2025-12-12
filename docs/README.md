@@ -28,9 +28,9 @@ File [update_list.md](update_list.py) will help to automatically update file [PR
 # 🚀 FUTURE PLANS:
 - [ ] Handle with other languages (such as python, java,...)
 - [ ] Create an app to:
-    * [ ] AI assistant**: provide suggestions, analyze errors, generate test cases, explain code.
-    * [ ] Statistics & Analytics**: progress charts, problem counts by difficulty, tags, solving time, accuracy rate, etc.
-    * [ ] Search & Filtering**: by tags, difficulty, status, language, solving date, etc.
-    * [ ] Personal notes & reminders**
-    * [ ] Practice mode**: random problems, set timers
-    * [ ] Roadmap**: suggest a roadmap with similar problems
+    * [ ] AI assistant: provide suggestions, analyze errors, generate test cases, explain code.
+    * [ ] Statistics & Analytics: progress charts, problem counts by difficulty, tags, solving time, accuracy rate, etc.
+    * [ ] Search & Filtering: by tags, difficulty, status, language, solving date, etc.
+    * [ ] Personal notes & reminders
+    * [ ] Practice mode: random problems, set timers
+    * [ ] Roadmap: suggest a roadmap with similar problems

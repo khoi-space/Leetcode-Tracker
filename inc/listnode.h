@@ -1,6 +1,3 @@
-#ifndef LISTNODE_H
-#define LISTNODE_H
-
 #include <iostream>
 using namespace std;
 
@@ -49,5 +46,3 @@ struct ListNode
         }
     }
 };
-
-#endif // LISTNODE_H

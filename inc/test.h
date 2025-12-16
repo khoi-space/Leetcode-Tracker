@@ -1,9 +1,18 @@
-#ifndef TEST_H
-#define TEST_H
 #include <cmath>
 #include "compare.h"
 #include "convert.h"
 
+template <typename T>
+void assertTest(const T& res, const T& exp, const int caseName) {
+	cout << "Case " << caseName << ": ";
+	if (!isEqual(res, exp)) {
+		cout << "\033[31mFAILED\033[0m: " << "Expected=" << exp << " Got=" << res << endl;
+	} else {
+		cout << "\033[32mPASSED\033[0m\n";
+	}
+}
+
+void test0();
 void test1();
 void test2();
 void test3();
@@ -36,21 +45,12 @@ void test29();
 void test30();
 void test162();
 void test1523();
+void test1925();
 void test1957();
+void test2110();
 void test2210();
 void test2211();
 void test3432();
 void test3433();
 void test3487();
 void test3606();
-
-template <typename T>
-void assertTest(const T& res, const T& exp, const int caseName) {
-	cout << "Case " << caseName << ": ";
-	if (!isEqual(res, exp)) {
-		cout << "\033[31mFAILED\033[0m: " << "Expected=" << exp << " Got=" << res << endl;
-	} else {
-		cout << "\033[32mPASSED\033[0m\n";
-	}
-}
-#endif //TEST_H

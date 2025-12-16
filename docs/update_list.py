@@ -169,10 +169,36 @@ def add_problem_entry(md_filepath: Path) -> bool:
             workspace_root = DOCS_DIR
             code_path = (workspace_root / rel_path).resolve()
             if not code_path.exists():
+                # ---------- Create new file -------------
                 # Create parent directories if needed and write default content for C++
                 code_path.parent.mkdir(parents=True, exist_ok=True)
                 with open(code_path, "w", encoding="utf-8") as fcode:
-                    fcode.write('#include "test.h"\n#include "global.h"\nusing namespace std;\n')
+                    fcode.write(
+                        '''#include "test.h"
+#include "global.h"
+using namespace std;
+/**
+* Problem {}: {}
+* @input: 
+* @output: 
+*/
+
+
+void test{}() {{
+    struct Case {{
+    }};
+
+    vector<Case> cases = {{
+    }};
+
+    for (int i = 0; i < (int)cases.size(); ++i) {{
+        // res
+        // assertTest(res, cases[i].exp, i);
+    }}
+}}
+'''.format(number_str, name, number_str)
+)
+                    print(f"Created code file: {code_path}")
                 file_created = True
 
         number_display = f"{number_str}" if file_created else number_str
@@ -199,11 +225,77 @@ def add_problem_entry(md_filepath: Path) -> bool:
         # Write the updated lines back to the markdown file
         with open(md_filepath, "w", encoding="utf-8") as f:
             f.write("\n".join(lines) + "\n")
-        if file_created:
-            print(f"Created code file: {code_path}")
         print(f"Added problem {number_str} to {header}")
-        return True
+    
+        # ------------ Update test.h ----------------
+        # Insert the prototype in sorted order in test.h
+        test_h_path = workspace_root.parent / 'inc' / 'test.h'
+        try:
+            proto = f'void test{number_str}();\n'
+            with open(test_h_path, 'r', encoding='utf-8') as ftest:
+                lines = ftest.readlines()
+            # Find the correct position to insert so the prototypes are sorted
+            insert_idx = None
+            for i, line in enumerate(lines):
+                m = re.match(r'void test(\d+)\(\);', line.strip())
+                if m:
+                    cur_num = int(m.group(1))
+                    # Insert before the first prototype with a greater number
+                    if int(number_str) < cur_num:
+                        insert_idx = i
+                        break
+            if insert_idx is None:
+                # If not found, insert at the end before EOF
+                insert_idx = len(lines)
+            # Avoid duplicate prototypes
+            if proto not in lines:
+                lines.insert(insert_idx, proto)
+                with open(test_h_path, 'w', encoding='utf-8') as ftest:
+                    ftest.writelines(lines)
+            print('Update test.h')
+        except Exception as e:
+            print(f"Warning: Could not update test.h: {e}")
 
+        # ----------------- Update main.cpp --------------------
+        # Insert #elif for the new test in main.cpp in sorted order (giống logic update test.h)
+        main_cpp_path = workspace_root.parent / 'main.cpp'
+        try:
+            proto_elif = f'    #elif TEST_TO_RUN == {number_str}\n'
+            proto_call = f'        test{number_str}();\n'
+            with open(main_cpp_path, 'r', encoding='utf-8') as fmain:
+                main_lines = fmain.readlines()
+            # Kiểm tra trùng lặp
+            for line in main_lines:
+                m = re.match(r'\s*#elif TEST_TO_RUN == (\d+)', line.strip())
+                if m and int(m.group(1)) == int(number_str):
+                    print(f"main.cpp: TEST_TO_RUN == {number_str} already exists, no update needed.")
+                    return True
+            # Tìm vị trí chèn theo thứ tự tăng dần
+            insert_idx = None
+            for i, line in enumerate(main_lines):
+                m = re.match(r'\s*#elif TEST_TO_RUN == (\d+)', line.strip())
+                if m:
+                    cur_num = int(m.group(1))
+                    num_to_add = int(number_str)
+                    if num_to_add < cur_num and insert_idx is None:
+                        insert_idx = i
+                        break
+            new_block = [proto_elif, proto_call]
+            if insert_idx is not None:
+                main_lines[insert_idx:insert_idx] = new_block
+            else:
+                # Insert trước #else
+                for i, line in enumerate(main_lines):
+                    if line.strip().startswith('#else'):
+                        main_lines[i:i] = new_block
+                        break
+            with open(main_cpp_path, 'w', encoding='utf-8') as fmain:
+                fmain.writelines(main_lines)
+            print('Update main.cpp')
+        except Exception as e:
+            print(f"Warning: Could not update main.cpp: {e}")
+
+        return True
     except FileNotFoundError:
         print(f"Error: Not found file {md_filepath}")
         return False

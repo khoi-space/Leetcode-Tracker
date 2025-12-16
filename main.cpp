@@ -1,8 +1,5 @@
-#include "solution.h"
 #include "test.h"
-#include <chrono>
-#include "solution.h"
-#include "test.h"
+#include "global.h"
 #include <cstring>
 #include <chrono>
 using namespace std;
@@ -77,8 +74,12 @@ int main(int argc, char* argv[]) {
         test162();
     #elif TEST_TO_RUN == 1523
         test1523();
+    #elif TEST_TO_RUN == 1925
+        test1925();
     #elif TEST_TO_RUN == 1957
         test1957();
+    #elif TEST_TO_RUN == 2110
+        test2110();
     #elif TEST_TO_RUN == 2210
         test2210();
     #elif TEST_TO_RUN == 2211
@@ -92,6 +93,7 @@ int main(int argc, char* argv[]) {
     #elif TEST_TO_RUN == 3606
         test3606();
     #else
-    #error "Unknown TEST_TO_RUN value"
+        #error "Unknown TEST_TO_RUN value"
     #endif
+    return 0;
 }

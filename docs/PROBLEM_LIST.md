@@ -1,5 +1,5 @@
 # LIST OF PROBLEMS
-**Total solved problems: 31**
+**Total solved problems: 33**
 ## 🟢Easy
 * [1] Two Sum [[https://leetcode.com/problems/two-sum/](https://leetcode.com/problems/two-sum/)]
     * [C++](../src/cpp/1.cpp)
@@ -15,6 +15,8 @@
     * [C++](../src/cpp/21.cpp)
 * [1523] Count Odd Numbers in an Interval Range [[https://leetcode.com/problems/count-odd-numbers-in-an-interval-range/](https://leetcode.com/problems/count-odd-numbers-in-an-interval-range/)]
     * [C++](../src/cpp/1523.cpp)
+* [1925] Count Square Sum Triples [[https://leetcode.com/problems/count-square-sum-triples/](https://leetcode.com/problems/count-square-sum-triples/)]
+    * [C++](../src/cpp/1925.cpp)
 * [1957] Delete Characters to Make Fancy String [[https://leetcode.com/problems/delete-characters-to-make-fancy-string/](https://leetcode.com/problems/delete-characters-to-make-fancy-string/)]
     * [C++](../src/cpp/1957.cpp)
 * [2210] Count Hills and Valleys in an Array [[https://leetcode.com/problems/count-hills-and-valleys-in-an-array/](https://leetcode.com/problems/count-hills-and-valleys-in-an-array/)]
@@ -57,6 +59,8 @@
     * [C++](../src/cpp/22.cpp)
 * [162] Find Peak Element [[https://leetcode.com/problems/find-peak-element/](https://leetcode.com/problems/find-peak-element/)]
     * [C++](../src/cpp/162.cpp)
+* [2110] Number of Smooth Descent Periods of a Stock [[https://leetcode.com/problems/number-of-smooth-descent-periods-of-a-stock/](https://leetcode.com/problems/number-of-smooth-descent-periods-of-a-stock/)]
+    * [C++](../src/cpp/2110.cpp)
 * [2211] Count Collisions on a Road [[https://leetcode.com/problems/count-collisions-on-a-road/](https://leetcode.com/problems/count-collisions-on-a-road/)]
     * [C++](../src/cpp/2211.cpp)
 * [3433] Count Mentions Per User [[https://leetcode.com/problems/count-mentions-per-user/](https://leetcode.com/problems/count-mentions-per-user/)]

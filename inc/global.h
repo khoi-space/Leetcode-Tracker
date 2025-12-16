@@ -1,6 +1,3 @@
-#ifndef GLOBAL_H
-#define GLOBAL_H
-
 #include <iostream>
 #include <vector>
 #include <string>
@@ -12,5 +9,3 @@
 #include <climits>
 #include <algorithm>
 #include "listnode.h"
-
-#endif //GLOBAL_H

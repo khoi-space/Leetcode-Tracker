@@ -1,5 +1,5 @@
 # LIST OF PROBLEMS
-**Total solved problems: 33**
+**Total solved problems: 34**
 ## 🟢Easy
 * [1] Two Sum [[https://leetcode.com/problems/two-sum/](https://leetcode.com/problems/two-sum/)]
     * [C++](../src/cpp/1.cpp)
@@ -13,6 +13,8 @@
     * [C++](../src/cpp/20.cpp)
 * [21] Merge Two Sorted Lists [[https://leetcode.com/problems/merge-two-sorted-lists/](https://leetcode.com/problems/merge-two-sorted-lists/)]
     * [C++](../src/cpp/21.cpp)
+* [27] Remove Element [[https://leetcode.com/problems/remove-element/](https://leetcode.com/problems/remove-element/)]
+    * [C++](../src/cpp/27.cpp)
 * [1523] Count Odd Numbers in an Interval Range [[https://leetcode.com/problems/count-odd-numbers-in-an-interval-range/](https://leetcode.com/problems/count-odd-numbers-in-an-interval-range/)]
     * [C++](../src/cpp/1523.cpp)
 * [1925] Count Square Sum Triples [[https://leetcode.com/problems/count-square-sum-triples/](https://leetcode.com/problems/count-square-sum-triples/)]

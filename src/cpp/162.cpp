@@ -2,7 +2,8 @@
  #include "global.h"
 using namespace std;
 
-int approach = 0;
+#define DEBUG
+#define APR 1
 
 /**
  * Problem 162: Find Peak Element
@@ -10,45 +11,47 @@ int approach = 0;
  * @output: a peak element
  */
 int findPeakElement(vector<int>& nums) {
-    if (approach == 1) {
-        // Approach 1: O(n)
-        if (nums.size() == 0 || nums.size() == 1) return 0;
-        int n = nums.size();
-        bool wait_for_lower = false; // 1 indicates taller, -1 indicates shorter
-        for (int i = 1; i < n; ++i) {
-            if (nums[i - 1] < nums[i]) {
-                wait_for_lower = true;
-            } else if (nums[i - 1] > nums[i]) {
-                if (wait_for_lower == true) return (i - 1); // i-1 is a peak
-            }
+    #if APR == 1
+    // O(n)
+    if (nums.size() == 0 || nums.size() == 1) return 0;
+    int n = nums.size();
+    bool wait_for_lower = false; // 1 indicates taller, -1 indicates shorter
+    for (int i = 1; i < n; ++i) {
+        if (nums[i - 1] < nums[i]) {
+            wait_for_lower = true;
+        } else if (nums[i - 1] > nums[i]) {
+            if (wait_for_lower == true) return (i - 1); // i-1 is a peak
         }
-        if (wait_for_lower == false) return 0;
-        else if (wait_for_lower == true) return n-1;
-        return 0;
-    } else if (approach == 2) {
-        // Approach 2: O(logn)
-        int left = 0;
-        int right = nums.size() - 1;
+    }
+    if (wait_for_lower == false) return 0;
+    else if (wait_for_lower == true) return n-1;
+    return 0;
+    #elif APR == 2
+    // Binary search - O(logn)
+    int left = 0;
+    int right = nums.size() - 1;
 
-        while (left < right) {
-            int mid = left + (right - left) / 2;
-            if (nums[mid] > nums[mid + 1]) {
-                right = mid;
-            } else {
-                left = mid + 1;
-            }
-            // cout << left << " " << mid << " " << right << endl;
+    while (left < right) {
+        int mid = left + (right - left) / 2;
+        if (nums[mid] > nums[mid + 1]) {
+            right = mid;
+        } else {
+            left = mid + 1;
         }
-        return left;
+        #if DEBUG
+        cout << left << " " << mid << " " << right << endl;
+        #endif
+    }
+    return left;
+    #endif
+    if (approach == 1) {
+    } else if (approach == 2) {
     }
     return 0;
 }
 
 void test162() {
-    cout << "Approach:\n";
-    cout << "1. O(n)\n";
-    cout << "2. Binary Search - O(logn)\n";
-    cout << ">>> "; cin >> approach;
+    cout << "Approach " << APR << endl;
 
     struct Case {
         vector<int> nums;

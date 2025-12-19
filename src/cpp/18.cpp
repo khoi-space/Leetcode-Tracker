@@ -61,8 +61,8 @@ void test18() {
         {{1000000000,1000000000,1000000000,1000000000}, 0, {}}
     };
 
-    int i = 0;
-    for (auto& c : cases) {
+    for (int i = 0; i < (int)cases.size(); ++i) {
+        Case c = cases[i];
         vector<vector<int>> res = fourSum(c.nums, c.target);
         assertTest(res, c.exp, i);
     }

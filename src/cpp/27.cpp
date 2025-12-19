@@ -2,7 +2,8 @@
 #include "global.h"
 using namespace std;
 
-int approach = 0;
+#define DEBUG
+#define APR 1
 
 /**
  * Problem 27: Remove Element
@@ -10,40 +11,36 @@ int approach = 0;
  * @output: size of nums left (don't change actual size) and nums after deleted val
 */
 int removeElement(vector<int>& nums, int val) {
-    if (approach == 1) {
-        // Approach 1: New vector
-        int n = nums.size();
-        vector<int> new_nums;
-        int remain_cnt = 0;
-        for (int i = 0; i < n; ++i) {
-            if (nums[i] == val) continue;
-            new_nums.push_back(nums[i]);
-            ++remain_cnt;
-        }
-        nums = new_nums;
-        return remain_cnt;
-    } else if (approach == 2) {
-        // Approach 2: In-place
-        int k = 0;
-
-        for (int i = 0; i < (int)nums.size(); ++i) {
-            if (nums[i] != val) {
-                nums[k] = nums[i];
-                ++k;
-            }
-        }
-
-        nums.resize(k);
-        return k;
+    #if APR == 1
+    // Insert to new vector
+    int n = nums.size();
+    vector<int> new_nums;
+    int remain_cnt = 0;
+    for (int i = 0; i < n; ++i) {
+        if (nums[i] == val) continue;
+        new_nums.push_back(nums[i]);
+        ++remain_cnt;
     }
-    return 0;
+    nums = new_nums;
+    return remain_cnt;
+    #elif APR == 2
+    // Process in-place
+    int k = 0;
+
+    for (int i = 0; i < (int)nums.size(); ++i) {
+        if (nums[i] != val) {
+            nums[k] = nums[i];
+            ++k;
+        }
+    }
+
+    nums.resize(k);
+    return k;
+    #endif
 }
 
 void test27() {
-    cout << "Approach:\n";
-    cout << "1. Create new vector\n";
-    cout << "2. In-place\n";
-    cout << ">>> "; cin >> approach;
+    cout << "Approach " << APR << endl;
 
     struct Case {
         vector<int> nums;

@@ -1,9 +1,10 @@
 
 #include "test.h"
- #include "global.h"
+#include "global.h"
 using namespace std;
 
-int approach = 0;
+#define DEBUG
+#define APR 1
 
 /**
  * Problem 13: Roman to Integer
@@ -11,56 +12,55 @@ int approach = 0;
  * @output: int of roman numeral string
  */
 int romanToInt(string s) {
-    if (approach == 1) {
-        // Option 1(optimal): right-left & int array
-        static int val[256] = {};
-    
-        val['I'] = 1;
-        val['V'] = 5;
-        val['X'] = 10;
-        val['L'] = 50;
-        val['C'] = 100;
-        val['D'] = 500;
-        val['M'] = 1000;
-    
-        int prev_val = 0;
-        int result = 0;
-    
-        for (int i = s.length() - 1; i >= 0; --i) { // Move from right to left (no more jumping)
-            int cur_val = val[(unsigned char)s[i]];
-            result += (cur_val < prev_val) ? -cur_val : cur_val;
-            prev_val = cur_val;
-        }
-    
-        return result;
+    #if APR == 1
+    // Right-left & int array
+    static int val[256] = {};
+
+    val['I'] = 1;
+    val['V'] = 5;
+    val['X'] = 10;
+    val['L'] = 50;
+    val['C'] = 100;
+    val['D'] = 500;
+    val['M'] = 1000;
+
+    int prev_val = 0;
+    int result = 0;
+
+    for (int i = s.length() - 1; i >= 0; --i) { // Move from right to left (no more jumping)
+        int cur_val = val[(unsigned char)s[i]];
+        result += (cur_val < prev_val) ? -cur_val : cur_val;
+        prev_val = cur_val;
     }
-    else if (approach == 2) {
-        // Option 2: left-right & hash map
-        unordered_map<char, int> val;
-        val['I'] = 1;
-        val['V'] = 5;
-        val['X'] = 10;
-        val['L'] = 50;
-        val['C'] = 100;
-        val['D'] = 500;
-        val['M'] = 1000;
-        int result = 0;
-    
-        for (size_t i = 0; i < s.length(); ++i) { // Move from left to right
-            if (i+1 < s.length() && val[s[i]] < val[s[i+1]]) {
-                result += val[s[i + 1]] - val[s[i]];
-                ++i;
-            } else {
-                result += val[s[i]];
-            }
+
+    return result;
+    #elif APR == 2
+    // Left-right & hash map
+    unordered_map<char, int> val;
+    val['I'] = 1;
+    val['V'] = 5;
+    val['X'] = 10;
+    val['L'] = 50;
+    val['C'] = 100;
+    val['D'] = 500;
+    val['M'] = 1000;
+    int result = 0;
+
+    for (size_t i = 0; i < s.length(); ++i) { // Move from left to right
+        if (i+1 < s.length() && val[s[i]] < val[s[i+1]]) {
+            result += val[s[i + 1]] - val[s[i]];
+            ++i;
+        } else {
+            result += val[s[i]];
         }
-    
-        return result;
     }
-    return 0;
-}
+
+    return result;
+    #endif
 
 void Test::test13() {
+    cout << "Approach " << APR << endl;
+
     struct Case {
         string s;
         int exp;
@@ -85,15 +85,9 @@ void Test::test13() {
         {"MCMXCIV", 1994}, // M(1000) + CM(900) + XC(90) + IV(4)
     };
 
-    extern Solution sol;
-    cout << "Approach:\n";
-    cout << "1. Righ-to-left & int array (*)\n";
-    cout << "2. Left-to-right & hash map\n";
-    cout << ">>> "; cin >> approach;
-    int i = 0;
-    for (const auto& c : cases) {
-        ++i;
-        int res = sol.romanToInt(c.s);
-        Test::assertTest(res, c.exp, i);
+    for (int i = 0; i < (int)cases.size(); ++i) {
+        Case c = cases[i];
+        int res = romanToInt(c.s);
+        assertTest(res, c.exp, i);
     }
 }

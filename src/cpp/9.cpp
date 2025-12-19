@@ -1,7 +1,10 @@
 
 #include "test.h"
- #include "global.h"
+#include "global.h"
 using namespace std;
+
+#define DEBUG
+#define APR 1
 
 /**
  * Problem 9: Palindrome Number
@@ -36,11 +39,9 @@ void Test::test9() {
         {123, false}      // không palindrome
     };
 
-    extern Solution sol;
-    int i = 0;
-    for (const auto& c : cases) {
-        ++i;
-        bool res = sol.isPalindrome(c.x);
-        Test::assertTest(res, c.exp, i);
+    for (int i = 0; i < (int)cases.size(); ++i) {
+        Case c = cases[i];
+        bool res = isPalindrome(c.x);
+        assertTest(res, c.exp, i);
     }
 }

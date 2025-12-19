@@ -3,7 +3,8 @@
 #include <iostream>
 using namespace std;
 
-int approach = 0;
+#define DEBUG
+#define APR 1
 
 /**
  * Problem 3432: Count Partitions with Even Sum Difference
@@ -11,53 +12,48 @@ int approach = 0;
  * @output: num of partitions where sum_left - sum_right is even
  */
 int countPartitions(vector<int>& nums) {
-    if (approach == 1) {
-        // Approach 1: Mathematics
-        int totalSum = 0;
-        for (int num : nums) {
-            totalSum += num;
-        }
-        return totalSum % 2 == 0 ? nums.size() - 1 : 0;
-    } else if (approach == 2) {
-        // Approach 2: Parity counting
-        int oddCount = 0;
-        for (int num : nums) {
-            if (num % 2 != 0) {
-                ++oddCount;
-            }
-        }
-        return (oddCount % 2 == 0) ? nums.size() - 1 : 0;
-    } else if (approach == 3) {
-        // Approach 3: Prefix parity scan
-        bool totalOdd = false;
-        for (int num : nums) {
-            if (num % 2 != 0) {
-                totalOdd = !totalOdd;
-            }
-        }
-
-        bool prefixOdd = false;
-        int partitions = 0;
-        for (size_t i = 0; i + 1 < nums.size(); ++i) {
-            if (nums[i] % 2 != 0) {
-                prefixOdd = !prefixOdd;
-            }
-            bool suffixOdd = totalOdd ^ prefixOdd;
-            if (prefixOdd == suffixOdd) {
-                ++partitions;
-            }
-        }
-        return partitions;
+    #if APR == 1
+    // Mathematics
+    int totalSum = 0;
+    for (int num : nums) {
+        totalSum += num;
     }
-    return 0;
+    return totalSum % 2 == 0 ? nums.size() - 1 : 0;
+    #elif APR == 2
+    // Parity counting
+    int oddCount = 0;
+    for (int num : nums) {
+        if (num % 2 != 0) {
+            ++oddCount;
+        }
+    }
+    return (oddCount % 2 == 0) ? nums.size() - 1 : 0;
+    #elif APR == 3
+    // Prefix parity scan
+    bool totalOdd = false;
+    for (int num : nums) {
+        if (num % 2 != 0) {
+            totalOdd = !totalOdd;
+        }
+    }
+
+    bool prefixOdd = false;
+    int partitions = 0;
+    for (size_t i = 0; i + 1 < nums.size(); ++i) {
+        if (nums[i] % 2 != 0) {
+            prefixOdd = !prefixOdd;
+        }
+        bool suffixOdd = totalOdd ^ prefixOdd;
+        if (prefixOdd == suffixOdd) {
+            ++partitions;
+        }
+    }
+    return partitions;
+    #endif
 }
 
 void test3432() {
-    cout << "Approach:\n";
-    cout << "1. Mathematics\n";
-    cout << "2. Parity counting\n";
-    cout << "3. Prefix parity scan\n";
-    cout << ">>> "; cin >> approach;
+    cout << "Approach " << APR << endl;
 
     struct Case {
         vector<int> nums;
@@ -87,11 +83,9 @@ void test3432() {
         {{8, 1, 1, 8}, 3},
     };
     
-    int i = 0;
-    for (const auto& c : cases) {
-        ++i;
-        vector<int> numsCopy = c.nums;
-        int res = countPartitions(numsCopy);
+    for (int i = 0; i < (int)cases.size(); ++i) {
+        Case c = cases[i];
+        int res = countPartitions(c.nums);
         assertTest(res, c.exp, i);
     }
 }

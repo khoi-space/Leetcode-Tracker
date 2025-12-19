@@ -15,64 +15,59 @@ int approach = 0;
  * @output: number of collisions
  */
 int countCollisions(string directions) {
-    if (approach == 1) {
-        // Approach 1: Simulation
-        int collisionCount = 0;
-        int rightMovingCount = -1;
-        for (char direction : directions) {
-            if (direction == 'L') {
-                if (rightMovingCount >= 0) {
-                    collisionCount += rightMovingCount + 1;
-                    rightMovingCount = 0;
-                }
-            } else if (direction == 'S') {
-                if (rightMovingCount > 0) {
-                    collisionCount += rightMovingCount;
-                }
-                rightMovingCount = 0;
-            } else if (direction == 'R') {
-                if (rightMovingCount >= 0) {
-                    ++rightMovingCount;
-                } else {
-                    rightMovingCount = 1;
-                }
-            } else {
-                return -1;
+    #if APR == 1
+    // Simulation
+    int collision_count = 0;
+    int right_move_count = -1;
+    for (char direction : directions) {
+        if (direction == 'L') {
+            if (right_move_count >= 0) {
+                collision_count += right_move_count + 1;
+                right_move_count = 0;
             }
+        } else if (direction == 'S') {
+            if (right_move_count > 0) {
+                collision_count += right_move_count;
+            }
+            right_move_count = 0;
+        } else if (direction == 'R') {
+            if (right_move_count >= 0) {
+                ++right_move_count;
+            } else {
+                right_move_count = 1;
+            }
+        } else {
+            return -1;
         }
-        return collisionCount;
     }
-    else if (approach == 2) {
-        // Approach 2: Counting
-        int collisionCount = 0;
-        int n = directions.size();
-        int l = 0, r = n - 1;
-        // Skip all left at head
-        while (l < n && directions[l] == 'L') {
-            ++l;
-        }
-        // Skip all right at tail
-        while (r >= l && directions[r] == 'R') {
-            --r;
-        }
+    return collision_count;
+    #elif APR == 2
+    // Counting
+    int collision_count = 0;
+    int n = directions.size();
+    int l = 0, r = n - 1;
+    // Skip all left at head
+    while (l < n && directions[l] == 'L') {
+        ++l;
+    }
+    // Skip all right at tail
+    while (r >= l && directions[r] == 'R') {
+        --r;
+    }
 
-        // Count values that not 'S' in the rest
-        for (int i = l; i <= r; ++i) {
-            char d = directions[i];
-            if (d == 'S') continue;
-            if (d != 'L' && d != 'R') return -1; // Invalid
-            ++collisionCount;
-        }
-        return collisionCount;
+    // Count values that not 'S' in the rest
+    for (int i = l; i <= r; ++i) {
+        char d = directions[i];
+        if (d == 'S') continue;
+        if (d != 'L' && d != 'R') return -1; // Invalid
+        ++collision_count;
     }
-    return 0;
+    return collision_count;
+    #endif
 }
 
 void test2211() {
-    cout << "Approach:\n";
-    cout << "1. Simulation\n";
-    cout << "2. Counting\n";
-    cout << ">>> "; cin >> approach;
+    cout << "Approach " << APR << endl;
 
     struct Case {
         string directions;

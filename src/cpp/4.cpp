@@ -1,9 +1,10 @@
 
 #include "test.h"
- #include "global.h"
+#include "global.h"
 using namespace std;
 
-int approach = 0;
+#define DEBUG
+#define APR 1
 
 // Helper function
 int solve(vector<int>& A, vector<int>& B, int k, int a_start, int a_end, int b_start, int b_end);
@@ -15,48 +16,48 @@ int solve(vector<int>& A, vector<int>& B, int k, int a_start, int a_end, int b_s
  * @require: must be O(log(m+n))
  */
 double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
-    if (approach == 1) {
-        // Approach 1: Merge Sort - O(m+n)
-        int p1 = 0, p2 = 0;
+    #if APR == 1
+    //  Merge Sort - O(m+n)
+    int p1 = 0, p2 = 0;
 
-        auto getMin = [&](vector<int>& nums1, vector<int>& nums2) -> int {
-            // Get the min(nums1[p1], nums2[p2]) and increment its pointer
-            if (p1 < (int)(nums1.size()) && p2 < (int)(nums2.size())) {
-                return (nums1[p1] < nums2[p2]) ? nums1[p1++] : nums2[p2++];
-            } else if (p1 < (int)(nums1.size())) {
-                return nums1[p1++];
-            } else if (p2 < (int)(nums2.size())) {
-                return nums2[p2++];
-            }
-            return -1;
-        };
-        
-        int total_size = (int)(nums1.size() + nums2.size());
-        if (total_size % 2 == 0) {
-            for (int i = 0; i < total_size / 2 - 1; ++i) {
-                getMin(nums1, nums2);
-            }
-            return (double)(getMin(nums1, nums2) + getMin(nums1, nums2)) / 2;
-        } else {
-            for (int i = 0; i < total_size / 2; ++i) {
-                getMin(nums1, nums2);
-            }
-            return getMin(nums1, nums2);
+    auto getMin = [&](vector<int>& nums1, vector<int>& nums2) -> int {
+        // Get the min(nums1[p1], nums2[p2]) and increment its pointer
+        if (p1 < (int)(nums1.size()) && p2 < (int)(nums2.size())) {
+            return (nums1[p1] < nums2[p2]) ? nums1[p1++] : nums2[p2++];
+        } else if (p1 < (int)(nums1.size())) {
+            return nums1[p1++];
+        } else if (p2 < (int)(nums2.size())) {
+            return nums2[p2++];
         }
-    }
-    else if (approach == 2) {
-        // Approach 2: Binary Search, Recursive - O(log(min(m, n)))
-        int n = (int)(nums1.size()), m = (int)(nums2.size());
-        int total_size = n + m;
-        if (total_size % 2) {
-            return (double)(solve(nums1, nums2, total_size / 2, 0, n - 1, 0, m - 1));
-        } else {
-            return (double)(solve(nums1, nums2, total_size / 2 - 1, 0, n - 1, 0, m - 1)
-                            + solve(nums1, nums2, total_size / 2, 0, n - 1, 0, m - 1))
-                            / 2;
+        return -1;
+    };
+    
+    int total_size = (int)(nums1.size() + nums2.size());
+    if (total_size % 2 == 0) {
+        for (int i = 0; i < total_size / 2 - 1; ++i) {
+            getMin(nums1, nums2);
         }
+        return (double)(getMin(nums1, nums2) + getMin(nums1, nums2)) / 2;
+    } else {
+        for (int i = 0; i < total_size / 2; ++i) {
+            getMin(nums1, nums2);
+        }
+        return getMin(nums1, nums2);
     }
     return -1;
+    #elif APR == 2
+    // Binary Search, Recursive - O(log(min(m, n))
+    int n = (int)(nums1.size()), m = (int)(nums2.size());
+    int total_size = n + m;
+    if (total_size % 2) {
+        return (double)(solve(nums1, nums2, total_size / 2, 0, n - 1, 0, m - 1));
+    } else {
+        return (double)(solve(nums1, nums2, total_size / 2 - 1, 0, n - 1, 0, m - 1)
+                        + solve(nums1, nums2, total_size / 2, 0, n - 1, 0, m - 1))
+                        / 2;
+    }
+    return -1;
+    #endif
 }
 
 int solve(  vector<int>& A, vector<int>& B, int k, 
@@ -94,6 +95,8 @@ int solve(  vector<int>& A, vector<int>& B, int k,
 }
 
 void test4() {
+    cout << "Approach " << APR << endl;
+
     struct Case {
         vector<int> nums1;
         vector<int> nums2;

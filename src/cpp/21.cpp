@@ -1,8 +1,9 @@
 #include "test.h"
- #include "global.h"
+#include "global.h"
 using namespace std;
 
-int approach = 0;
+#define DEBUG
+#define APR 1
 
 /**
  * Problem 21: 
@@ -10,50 +11,45 @@ int approach = 0;
  * @output: the head of the merged linked list (sorted)
  */
 ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
-    if (approach == 1) {
-        // Approach 1: recursion
-        if (list1 == nullptr || list2 == nullptr) {
-            return list1 ? list1 : list2;
-        }
+    #if APR == 1
+    // Recursion
+    if (list1 == nullptr || list2 == nullptr) {
+        return list1 ? list1 : list2;
+    }
 
+    if (list1->val > list2->val) {
+        swap(list1, list2);
+    }
+
+    list1->next = mergeTwoLists(list1->next, list2);
+
+    return list1;
+    #elif APR == 2
+    // Dummy node
+    ListNode* dummy = new ListNode(0);
+    ListNode* cur = dummy;
+
+    while (list1 && list2) {
         if (list1->val > list2->val) {
-            swap(list1, list2);
+            cur->next = list2;
+            list2 = list2->next;
+        } else {
+            cur->next = list1;
+            list1 = list1->next;
         }
-
-        list1->next = mergeTwoLists(list1->next, list2);
-
-        return list1;
+        cur = cur->next;
     }
-    else if (approach == 2) {
-        // Approach 2: dummy node
-        ListNode* dummy = new ListNode(0);
-        ListNode* cur = dummy;
 
-        while (list1 && list2) {
-            if (list1->val > list2->val) {
-                cur->next = list2;
-                list2 = list2->next;
-            } else {
-                cur->next = list1;
-                list1 = list1->next;
-            }
-            cur = cur->next;
-        }
+    cur->next = (list1 != nullptr) ? list1 : list2;
 
-        cur->next = (list1 != nullptr) ? list1 : list2;
-
-        ListNode* head = dummy->next;
-        delete dummy;
-        return head;
-    }
-    return nullptr;
+    ListNode* head = dummy->next;
+    delete dummy;
+    return head;
+    #endif
 }
 
 void Test::test21() {
-    cout << "Approach:\n";
-    cout << "1. Recursion\n";
-    cout << "2. Dummy node\n";
-    cout << ">>> "; cin >> approach;
+    cout << "Approach " << APR << endl;
 
     struct Case {
         vector<int> list1;
@@ -73,15 +69,13 @@ void Test::test21() {
         {{1,1,1}, {1,1,1}, {1,1,1,1,1,1}}
     };
 
-    extern Solution sol;
-    int i = 0;
-    for (const auto& c : cases) {
-        ++i;
+    for (int i = 0; i < (int)cases.size(); ++i) {
+        Case c = cases[i];
         ListNode* l1 = ListNode::createList(c.list1.data(), c.list1.size());
         ListNode* l2 = ListNode::createList(c.list2.data(), c.list2.size());
         ListNode* exp = ListNode::createList(c.exp.data(), c.exp.size());
         ListNode* res = sol.mergeTwoLists(l1, l2);
         bool ok = isEqual(res, exp);
-        Test::assertTest(ok, true, i);
+        assertTest(ok, true, i);
     }
 }

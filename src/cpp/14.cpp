@@ -39,11 +39,8 @@ void Test::test14() {
         {{}, ""}
     };
 
-    extern Solution sol;
-    int i = 0;
-    for (const auto& c : cases) {
-        ++i;
-        string res = sol.longestCommonPrefix(const_cast<vector<string>&>(c.strs));
-        Test::assertTest(res, c.exp, i);
+    for (int i = 0; i < (int)cases.size(); ++i) {
+        string res = longestCommonPrefix(const_cast<vector<string>&>(c.strs));
+        assertTest(res, c.exp, i);
     }
 }

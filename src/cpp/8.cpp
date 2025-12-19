@@ -1,5 +1,6 @@
 #include "test.h"
- #include "global.h"
+#include "global.h"
+using namespace std;
 
 int myAtoi(string s) {
     if (s.empty()) return 0;
@@ -60,9 +61,8 @@ void test8() {
         {"2147483647", INT_MAX}
     };
 
-    int i = 0;
-    for (const auto& c : cases) {
-        ++i;
+    for (int i = 0; i < (int)cases.size(); ++i) {
+        Case c = cases[i];
         int res = myAtoi(c.s);
         assertTest(res, c.exp, i);
     }

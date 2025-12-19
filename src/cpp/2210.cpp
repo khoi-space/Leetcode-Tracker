@@ -2,7 +2,8 @@
  #include "global.h"
 using namespace std;
 
-int approach = 0;
+#define DEBUG
+#define APR 2
 
 /**
  * Problem 2210: Count Hills and Valleys in an Array
@@ -10,68 +11,64 @@ int approach = 0;
  * @output: num of hills and valleys
  */
 int countHillValley(vector<int>& nums) {
-    if (approach == 1) {
-        // Approach 1: O(n^2)
-        int cnt = 0;
-        int n = nums.size();
-        for (int i = 1; i < n - 1; ++i) {
-            if (nums[i] == nums[i - 1]) continue;
-    
-            int left_flag = 0; // left_flag = 1 if peak, left_flag = -1 if valley
-            for (int j = i - 1; j >= 0; --j) {
-                if (nums[j] < nums[i]) {
-                    left_flag = -1;
-                    break;
-                } else if (nums[j] > nums[i]) {
-                    left_flag = 1;
-                    break;
-                }
-            }
-    
-            int right_flag = 0;
-            for (int j = i + 1; j < n; ++j) {
-                if (nums[j] < nums[i]) {
-                    right_flag = -1; 
-                    break;
-                } else if (nums[j] > nums[i]) {
-                    right_flag = 1;
-                    break;
-                }
-            }
-    
-            if (left_flag == right_flag && left_flag*right_flag != 0) {
-                ++cnt;
-            }
-            
-        }
-        return cnt;
-    } else if (approach == 2) {
-        // Approach 2: O(n)
-        int cnt = 0;
-        int n = nums.size();
-        int is_taller = 0; // 0 is neither, 1 indicates taller, -1 indicates shorter
+    #if APR == 1
+    // O(n^2)
+    int cnt = 0;
+    int n = nums.size();
+    for (int i = 1; i < n - 1; ++i) {
+        if (nums[i] == nums[i - 1]) continue;
 
-        for (int i = 1; i < n; ++i) {
-            if (nums[i] == nums[i - 1]) continue;
-
-            if (nums[i - 1] < nums[i]) {
-                cnt += (is_taller == -1) ? 1 : 0; // found a valley
-                is_taller = 1;
-            } else if (nums[i - 1] > nums[i]) {
-                cnt += (is_taller == 1) ? 1 : 0; // found a hill
-                is_taller = -1;
+        int left_flag = 0; // left_flag = 1 if peak, left_flag = -1 if valley
+        for (int j = i - 1; j >= 0; --j) {
+            if (nums[j] < nums[i]) {
+                left_flag = -1;
+                break;
+            } else if (nums[j] > nums[i]) {
+                left_flag = 1;
+                break;
             }
         }
-        return cnt;
+
+        int right_flag = 0;
+        for (int j = i + 1; j < n; ++j) {
+            if (nums[j] < nums[i]) {
+                right_flag = -1; 
+                break;
+            } else if (nums[j] > nums[i]) {
+                right_flag = 1;
+                break;
+            }
+        }
+
+        if (left_flag == right_flag && left_flag*right_flag != 0) {
+            ++cnt;
+        }
+        
     }
-    return 0;
+    return cnt;
+    #elif APR == 2
+    // O(n)
+    int cnt = 0;
+    int n = nums.size();
+    int is_taller = 0; // 0 is neither, 1 indicates taller, -1 indicates shorter
+
+    for (int i = 1; i < n; ++i) {
+        if (nums[i] == nums[i - 1]) continue;
+
+        if (nums[i - 1] < nums[i]) {
+            cnt += (is_taller == -1) ? 1 : 0; // found a valley
+            is_taller = 1;
+        } else if (nums[i - 1] > nums[i]) {
+            cnt += (is_taller == 1) ? 1 : 0; // found a hill
+            is_taller = -1;
+        }
+    }
+    return cnt;
+    #endif
 }
 
 void test2210() {
-    cout << "Approach:\n";
-    cout << "1. O(n^2)\n";
-    cout << "2. O(n)\n";
-    cout << ">>> "; cin >> approach;
+    cout << "Approach " << APR << endl;
 
     struct Case {
         vector<int> nums;

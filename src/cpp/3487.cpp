@@ -2,6 +2,9 @@
  #include "global.h"
 using namespace std;
 
+#define DEBUG
+#define APR 1
+
 /**
  * Problem 3487: Maximum Unique Subarray Sum After Deletion
  * @input: integer array

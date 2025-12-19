@@ -2,6 +2,8 @@
  #include "global.h"
 using namespace std;
 
+#define DEBUG
+#define APR 1
 
 /**
  * Problem 16: 3Sum Closest

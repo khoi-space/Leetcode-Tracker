@@ -2,8 +2,6 @@
 #include "global.h"
 using namespace std;
 
-//int approach = 0;
-
 /**
  * Problem 1431: Kids With the Greatest Number of Candies
  * @input: candies[i] is the num of candies that ith kids has, extraCandies is the num of candies you have
@@ -28,11 +26,6 @@ vector<bool> kidsWithCandies(vector<int>& candies, int extraCandies) {
 }
 
 void test1431() {
-    //cout << "Approach:";
-    //cout << "1.";
-    //cout << "2.";
-    //cout << ">>> "; cin >> approach;
-
     struct Case {
         vector<int> candies;
         int extraCandies;
@@ -47,7 +40,6 @@ void test1431() {
     };
 
     for (int i = 0; i < (int)cases.size(); ++i) {
-        // res
         vector<bool> res = kidsWithCandies(cases[i].candies, cases[i].extraCandies);
         assertTest(res, cases[i].exp, i);
     }

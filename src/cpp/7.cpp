@@ -1,5 +1,5 @@
 #include "test.h"
- #include "global.h"
+#include "global.h"
 using namespace std;
 
 int approach = 0;
@@ -44,10 +44,7 @@ int reverse(int x) {
 }
 
 void test7() {
-    cout << "Approach:\n";
-    cout << "1. Pop & push\n";
-    cout << "2. Convert to string\n";
-    cout << ">>> "; cin >> approach;
+    cout << "Approach " << APR << endl;
 
     struct Case {
         int x;
@@ -61,18 +58,9 @@ void test7() {
         {123456789, 987654321}
     };
 
-    bool allPassed = true;
-    for (auto& c : cases) {
-        static int i = 0;
-        ++i;
+    for (int i = 0; i < (int)cases.size(); ++i) {
+        Case c = cases[i];
         int res = reverse(c.x);
-        if (res != c.exp) {
-            allPassed = false;
-            cout << "\033[31mFAILED\033[0m case " << i << ": exp=" << c.exp << " got=" << res << endl;
-        }
-    }
-    
-    if (allPassed) {
-        cout << "\033[32mPASSED\033[0m\n";
+        assertTest(res, c.exp, i);
     }
 }

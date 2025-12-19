@@ -2,7 +2,8 @@
  #include "global.h"
 using namespace std;
 
-int approach = 0;
+#define DEBUG
+#define APR 1
 
 /**
  * Problem 15: 3Sum
@@ -10,73 +11,69 @@ int approach = 0;
  * @output: all the triplet that have sum == 0
  */
 vector<vector<int>> threeSum(vector<int>& nums) {
-    if (approach == 1) {
-        // Approach 1: 3 nested loops
-        vector<vector<int>> ans;
-        int n = nums.size();
-        sort(nums.begin(), nums.end());
-    
-        for (int i = 0; i < n - 2; ++i) {
-            for (int j = i + 1; j < n - 1; ++j) {
-                for (int k = j + 1; k < n; ++k) {
-                    if (nums[i] + nums[j] + nums[k] == 0) {
-                        vector<int> satisfy_sum_arr = {nums[i], nums[j], nums[k]};
-                        bool arrExsited = false;
-                        for (int l = 0; l < (int)ans.size(); ++l) {
-                            if (satisfy_sum_arr == ans[l]) {
-                                arrExsited = true;
-                                break;
-                            }
+    #if APR == 1
+    // 3 nested loops
+    vector<vector<int>> ans;
+    int n = nums.size();
+    sort(nums.begin(), nums.end());
+
+    for (int i = 0; i < n - 2; ++i) {
+        for (int j = i + 1; j < n - 1; ++j) {
+            for (int k = j + 1; k < n; ++k) {
+                if (nums[i] + nums[j] + nums[k] == 0) {
+                    vector<int> satisfy_sum_arr = {nums[i], nums[j], nums[k]};
+                    bool arrExsited = false;
+                    for (int l = 0; l < (int)ans.size(); ++l) {
+                        if (satisfy_sum_arr == ans[l]) {
+                            arrExsited = true;
+                            break;
                         }
-                        if (arrExsited == false) {
-                            ans.push_back(satisfy_sum_arr);
-                        }
+                    }
+                    if (arrExsited == false) {
+                        ans.push_back(satisfy_sum_arr);
                     }
                 }
             }
         }
-        return ans;
-    } else if (approach == 2) {
-        // Approach 2: Two pointers
-        vector<vector<int>> ans;
-        sort(nums.begin(), nums.end());
-        int n = nums.size();
-
-        for (int i = 0; i < n - 2; ++i) {
-            if (i > 0 && nums[i] == nums[i-1]) {
-                continue;
-            }
-
-            int j = i + 1;
-            int k = n - 1;
-
-            while (j < k) {
-                int total = nums[i] + nums[j] + nums[k];
-
-                if (total > 0) {
-                    --k;
-                } else if (total < 0) {
-                    ++j;
-                } else { // total == 0
-                    ans.push_back({nums[i], nums[j], nums[k]});
-                    ++j;
-
-                    while (nums[j] == nums[j-1] && j < k) {
-                        ++j;
-                    }
-                }
-            }
-        }
-        return ans;
     }
-    return {};
+    return ans;
+    #elif APR == 2
+    // Two pointers
+    vector<vector<int>> ans;
+    sort(nums.begin(), nums.end());
+    int n = nums.size();
+
+    for (int i = 0; i < n - 2; ++i) {
+        if (i > 0 && nums[i] == nums[i-1]) {
+            continue;
+        }
+
+        int j = i + 1;
+        int k = n - 1;
+
+        while (j < k) {
+            int total = nums[i] + nums[j] + nums[k];
+
+            if (total > 0) {
+                --k;
+            } else if (total < 0) {
+                ++j;
+            } else { // total == 0
+                ans.push_back({nums[i], nums[j], nums[k]});
+                ++j;
+
+                while (nums[j] == nums[j-1] && j < k) {
+                    ++j;
+                }
+            }
+        }
+    }
+    return ans;
+    #endif
 }
 
 void test15() {
-    cout << "Approach:\n";
-    cout << "1. 3 nested loops - O(n^3)\n";
-    cout << "2*. Two pointer - O(n^2)\n";
-    cout << ">>> "; cin >> approach;
+    cout << "Approach " << APR << endl;
 
     struct Case {
       vector<int> nums;

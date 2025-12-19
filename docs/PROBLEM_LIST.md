@@ -1,5 +1,5 @@
 # LIST OF PROBLEMS
-**Total solved problems: 34**
+**Total solved problems: 41**
 ## 🟢Easy
 * [1] Two Sum [[https://leetcode.com/problems/two-sum/](https://leetcode.com/problems/two-sum/)]
     * [C++](../src/cpp/1.cpp)
@@ -15,8 +15,20 @@
     * [C++](../src/cpp/21.cpp)
 * [27] Remove Element [[https://leetcode.com/problems/remove-element/](https://leetcode.com/problems/remove-element/)]
     * [C++](../src/cpp/27.cpp)
+* [67] Add Binary [[https://leetcode.com/problems/add-binary/](https://leetcode.com/problems/add-binary/)]
+    * [C++](../src/cpp/67.cpp)
+* [345] Reverse Vowels of a String [[https://leetcode.com/problems/reverse-vowels-of-a-string/](https://leetcode.com/problems/reverse-vowels-of-a-string/)]
+    * [C++](../src/cpp/345.cpp)
+* [605] Can Place Flowers [[https://leetcode.com/problems/can-place-flowers/](https://leetcode.com/problems/can-place-flowers/)]
+    * [C++](../src/cpp/605.cpp)
+* [1071] Greatest Common Divisor of Strings [[https://leetcode.com/problems/greatest-common-divisor-of-strings/](https://leetcode.com/problems/greatest-common-divisor-of-strings/)]
+    * [C++](../src/cpp/1071.cpp)
+* [1431] Kids With the Greatest Number of Candies [[https://leetcode.com/problems/kids-with-the-greatest-number-of-candies/](https://leetcode.com/problems/kids-with-the-greatest-number-of-candies/)]
+    * [C++](../src/cpp/1431.cpp)
 * [1523] Count Odd Numbers in an Interval Range [[https://leetcode.com/problems/count-odd-numbers-in-an-interval-range/](https://leetcode.com/problems/count-odd-numbers-in-an-interval-range/)]
     * [C++](../src/cpp/1523.cpp)
+* [1768] Merge Strings Alternately [[https://leetcode.com/problems/merge-strings-alternately/](https://leetcode.com/problems/merge-strings-alternately/)]
+    * [C++](../src/cpp/1768.cpp)
 * [1925] Count Square Sum Triples [[https://leetcode.com/problems/count-square-sum-triples/](https://leetcode.com/problems/count-square-sum-triples/)]
     * [C++](../src/cpp/1925.cpp)
 * [1957] Delete Characters to Make Fancy String [[https://leetcode.com/problems/delete-characters-to-make-fancy-string/](https://leetcode.com/problems/delete-characters-to-make-fancy-string/)]
@@ -55,12 +67,14 @@
     * [C++](../src/cpp/17.cpp)
 * [18] 4Sum [[https://leetcode.com/problems/4sum/](https://leetcode.com/problems/4sum/)]
     * [C++](../src/cpp/18.cpp)
-* [19] Remove Nth Node From End of List [[https://leetcode.com/problems/remove-nth-node-from-end-of-list/](https://leetcode.com/problems/remove-nth-node-from-end-of-list/)]
-    * [C++](../src/cpp/19.cpp)
-* [22] Generate Parentheses [[https://leetcode.com/problems/generate-parentheses/](https://leetcode.com/problems/generate-parentheses/)]
-    * [C++](../src/cpp/22.cpp)
+* [151] Reverse Words in a String [[https://leetcode.com/problems/reverse-words-in-a-string/](https://leetcode.com/problems/reverse-words-in-a-string/)]
+    * [C++](../src/cpp/151.cpp)
 * [162] Find Peak Element [[https://leetcode.com/problems/find-peak-element/](https://leetcode.com/problems/find-peak-element/)]
     * [C++](../src/cpp/162.cpp)
+* [238] Product of Array Except Self [[https://leetcode.com/problems/product-of-array-except-self/](https://leetcode.com/problems/product-of-array-except-self/)]
+    * [C++](../src/cpp/238.cpp)
+* [334] Increasing Triplet Subsequence [[https://leetcode.com/problems/increasing-triplet-subsequence/](https://leetcode.com/problems/increasing-triplet-subsequence/)]
+    * [C++](../src/cpp/334.cpp)
 * [2110] Number of Smooth Descent Periods of a Stock [[https://leetcode.com/problems/number-of-smooth-descent-periods-of-a-stock/](https://leetcode.com/problems/number-of-smooth-descent-periods-of-a-stock/)]
     * [C++](../src/cpp/2110.cpp)
 * [2211] Count Collisions on a Road [[https://leetcode.com/problems/count-collisions-on-a-road/](https://leetcode.com/problems/count-collisions-on-a-road/)]
@@ -71,6 +85,6 @@
 ## 🔴Hard
 * [4] Median of Two Sorted Arrays [[https://leetcode.com/problems/median-of-two-sorted-arrays/](https://leetcode.com/problems/median-of-two-sorted-arrays/)]
     * [C++](../src/cpp/4.cpp)
-* [10*] Regular Expression Matching [[https://leetcode.com/problems/regular-expression-matching/](https://leetcode.com/problems/regular-expression-matching/)]
+* [10] Regular Expression Matching [[https://leetcode.com/problems/regular-expression-matching/](https://leetcode.com/problems/regular-expression-matching/)]
     * [C++](../src/cpp/10.cpp)
 

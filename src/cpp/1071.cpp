@@ -2,7 +2,8 @@
 #include "global.h"
 using namespace std;
 
-int approach = 0;
+#define DEBUG
+#define APR 1
 
 string joinWords(string str, int k) {
     string ret = "";
@@ -29,30 +30,26 @@ bool valid(string str1, string str2, int k) {
  * @explain: "ABABAB" & "ABAB" -> "AB" is a divisor
 */
 string gcdOfStrings(string str1, string str2) {
-    if (approach == 1) {
-        // Approach 1: Brute force
-        int len1 = str1.length(), len2 = str2.length();
-        for (int i = min(len1, len2); i >= 1; --i) {
-            if (valid(str1, str2, i)) {
-                return str1.substr(0, i);
-            }
+    #if APR == 1
+    // Brute force
+    int len1 = str1.length(), len2 = str2.length();
+    for (int i = min(len1, len2); i >= 1; --i) {
+        if (valid(str1, str2, i)) {
+            return str1.substr(0, i);
         }
-        return "";
-    } else if (approach == 2) {
-        // Approach 2: Greatest Common Divisor
-        if (str1 + str2 != str2 + str1) return "";
-
-        int gcd_len = __gcd(str1.size(), str2.size());
-        return str1.substr(0, gcd_len);
     }
     return "";
+    #elif APR == 2
+    // Greatest Common Divisor
+    if (str1 + str2 != str2 + str1) return "";
+
+    int gcd_len = __gcd(str1.size(), str2.size());
+    return str1.substr(0, gcd_len);
+    #endif
 }
 
 void test1071() {
-    cout << "Approach:\n";
-    cout << "1. Brute force\n";
-    cout << "2. Greatest Common Divisor\n";
-    cout << ">>> "; cin >> approach;
+    cout << "Approach " << APR << endl;
 
     struct Case {
         string str1;

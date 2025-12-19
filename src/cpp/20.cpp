@@ -51,11 +51,9 @@ void Test::test20() {
         {"]", false}
     };
 
-    extern Solution sol;
-    int i = 0;
-    for (const auto& c : cases) {
-        ++i;
-        bool res = sol.isValidParentheses(c.s);
-        Test::assertTest(res, c.exp, i);
+    for (int i = 0; i < (int)cases.size(); ++i) {
+        Case c = cases[i];
+        bool res = isValidParentheses(c.s);
+        assertTest(res, c.exp, i);
     }
 }

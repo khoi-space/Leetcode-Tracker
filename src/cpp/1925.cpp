@@ -1,6 +1,7 @@
 #include "test.h"
 #include "global.h"
 using namespace std;
+
 /**
  * Problem 1925: Count Square Sum Triples
  * @input: integer n

@@ -2,6 +2,9 @@
  #include "global.h"
 using namespace std;
 
+#define DEBUG
+#define APR 1
+
 #define STATUS      0
 #define TIMESTAMP   1
 #define MENTION     2
@@ -127,9 +130,8 @@ void test3433() {
         {2, {{"MESSAGE", "1", "ALL"}, {"MESSAGE", "2", "HERE"}}, {2,2}}
     };
 
-    int i = 0;
-    for (auto& c : cases) {
-        ++i;
+    for (int i = 0; i < (int)cases.size(); ++i) {
+        Case c = cases[i];
         vector<int> res = countMentions(c.numberOfUsers, c.events);
         assertTest(res, c.exp, i);
     }

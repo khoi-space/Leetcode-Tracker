@@ -15,9 +15,11 @@ Leetcode/
 ├── Makefile         # Build script for C++  
 ├── src/             # Source code  
 │   ├── cpp/              # C++ solution files  
-│   └── py/               # Python solution files  
+│   └── py/               # Python solution files
+│   └── ...
 ├── utils/           # Utility code  
-│   └── print.h           # Helper functions for printing (C++)
+│   └── compare.h    # Compare usual types
+│   └── convert.h    # Convert usual types into string
 ```
 # 📝 NOTE 
 File [update_list.md](update_list.py) will help to automatically update file [PROBLEM_LIST.md](PROBLEM_LIST.md):
